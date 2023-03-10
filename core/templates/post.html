@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+
+    <div class="card mt-3">
+
+        <div class="card-header text-center fs-5">
+            {{ post.author }}
+        </div>
+
+        <div class="card-body text-center">
+            <h5 class="card-title text-center fs-1">{{ post.title }}</h5>
+            <p class="card-text text-center fs-4">{{ post.body }}</p>
+        </div>
+        <p class="fs-5 ms-2">Комментарии:</p>
+        {% for comment in post.comments %}
+        <p class="fs-5 ms-2"><span class="text-primary-emphasis">{{ comment.author }}</span>: {{ comment.message }}</p>
+        {% endfor %}
+
+        {% if current_user.is_authenticated %}
+
+        <form action="{{ url_for('add_comment', post_id=post.id) }}" method="post" class="fs-5 text-center">
+        <input type="text" name="message" id="">
+        <button class="btn btn-primary">Оставить комментарий</button>
+        {% if current_user == post.author %}
+        <a href="{{ url_for('post_delete', id=post.id) }} " class="btn btn-danger">Удалить пост</a><br><br>
+        {% endif %}
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}
