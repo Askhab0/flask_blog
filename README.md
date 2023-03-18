@@ -1,7 +1,10 @@
 ## FLASK_BLOG
 
-### First project -> python flask blog
+This is a simple blog site made with flask
 
-### Installing
+### Installation
 
-..........
+- Install docker
+- Connect your database
+- Install packages with pip: -r requirements.txt
+- The app link is: http://127.0.0.1:5000
